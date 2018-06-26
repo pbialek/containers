@@ -1,53 +1,38 @@
 #include <iostream>
 
 class Node {
-	public:
+    private:
         Node *next = 0;
         int val = 0;
 
+	public:
 		Node(int _val) {
             val = _val;
         };
         Node() {};
+        void setNext(Node *_next) {
+            next = _next;
+        };
+        Node *getNext() {return next;};
+        int getValue() { return val;};
 };
 
 class List {
-	int size = 0;
-	Node *front = 0;
-    Node *back = 0;
+    private:
+        int size = 0;
+	    Node *front = 0;
 
 	public:
 		List(int val) {
             front = new Node(val);
-            back = front;
             size++;
         };
         List() {};
 
-        void push_back(int val) {
-            Node *newNode = new Node(val);
-
-            if(front == 0) {
-                std::cout << "front\n";
-                front = newNode;
-                back = front;
-                size++;
-            }
-            else {
-                Node *temp = front;
-                while(temp->next) {
-                    temp = temp->next;
-                }
-                temp->next = newNode;
-                back = temp->next;
-                size++;
-            }
-        }
-
         void push_front(int val) {
             Node *temp = front;
             front = new Node(val);
-            front->next = temp;
+            front->setNext(temp);
         }
 
         int whatSize() { return size;};
@@ -55,25 +40,17 @@ class List {
         void showList() {
             Node *temp = front;
             while(temp) {
-                std::cout << temp->val << "\n";
-                temp = temp->next;
+                std::cout << temp->getValue() << "\n";
+                temp = temp->getNext();
             }
         };
-
-        int showBack() { return back->val; };
-
 };
 
 int main()
 {
-    List l;
-    l.push_back(3);
-    l.push_back(8);
-    l.push_back(2);
+    List l(5);
     l.push_front(7);
     l.push_front(9);
 
     l.showList();
-
-    std::cout << "Back: " << l.showBack() << "\n";
 }
