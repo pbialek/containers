@@ -6,8 +6,8 @@ class Node {
         Node *next = 0;
         T val = 0;
 
-	public:
-		Node(T _val) {
+    public:
+        Node(T _val) {
             val = _val;
         };
         Node() {};
@@ -24,8 +24,8 @@ class List {
         int size = 0;
 	    Node<T> *front = 0;
 
-	public:
-		List(T val) {
+    public:
+        List(T val) {
             front = new Node<T>(val);
             size++;
         };
